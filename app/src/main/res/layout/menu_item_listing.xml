@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto" android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+    <TextView
+            android:id="@+id/itemName"
+            android:text="@string/cheeseburger"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+    <ImageView
+            android:id="@+id/itemImage"
+            app:srcCompat="@drawable/classic_burger"
+            android:contentDescription="@string/classic_burger"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:adjustViewBounds="true"
+    />
+    <TextView
+            android:id="@+id/itemDescription"
+            android:text="@string/cheeseburger_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_weight="3"/>
+    <TextView
+            android:id="@+id/priceLabel"
+            android:text="@string/cheeseburger_price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_weight="1"/>
+
+    <CheckBox android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="8dp"
+              android:layout_marginStart="8dp"
+              android:layout_marginLeft="8dp"
+              android:id="@+id/itemChecked"/>
+</LinearLayout>

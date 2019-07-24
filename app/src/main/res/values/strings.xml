@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">RestaurantApp</string>
+    <string name="cheeseburger">Cheeseburger</string>
+    <string name="cheeseburger_description">Our take on an all-American favorite!</string>
+    <string name="cheeseburger_price">$7.99</string>
+    <string name="classic_burger">Classic burger</string>
+</resources>
