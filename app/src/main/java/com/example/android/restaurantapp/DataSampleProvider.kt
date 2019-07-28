@@ -6,11 +6,11 @@ fun createSampleData() : MutableList<RestaurantItem> {
     val restaurantItemList : MutableList<RestaurantItem> = mutableListOf()
 
     val cheeseburger = RestaurantItem(null, "Cheeseburger", 7.99,
-    "Our take on an American classic, featuring homemade Brioche and house sauce")
+    "Our take on an American classic, featuring homemade Brioche and house sauce", "classic_burger.jpg")
     val coffee = RestaurantItem(null, "Brewed Coffee", 2.50,
-        "Pour-over made fresh to order")
+        "Pour-over made fresh to order", "cafe_latte.jpg")
     val milkshake = RestaurantItem(null, "Milkshake", 4.99,
-        "Old-fashioned milkshake with homemade whipped cream. Choose from vanilla, chocolate, or strawberry")
+        "Old-fashioned milkshake with homemade whipped cream. Choose from vanilla, chocolate, or strawberry", "cafe_latte.jpg")
 
     addItem(cheeseburger, restaurantItemList)
     addItem(coffee, restaurantItemList)

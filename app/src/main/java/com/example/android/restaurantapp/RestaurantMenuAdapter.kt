@@ -1,6 +1,7 @@
 package com.example.android.restaurantapp
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.android.restaurantapp.models.RestaurantItem
+import java.io.InputStream
 
 class RestaurantMenuAdapter(context: Context, items: MutableList<RestaurantItem>) : ArrayAdapter<RestaurantItem>(context,
     R.layout.item_listing, items) {
@@ -30,9 +32,14 @@ class RestaurantMenuAdapter(context: Context, items: MutableList<RestaurantItem>
 
         // Display the data in the generated views
         nameLabel.text = restaurantItem.name
-        itemImage.setImageResource(R.drawable.classic_burger)
         itemDescription.text = restaurantItem.description
         priceLabel.text = restaurantItem.price.toString()
+
+        // Get the item image
+        val imageResource = restaurantItem.image
+        val inputStream: InputStream = context.assets.open(imageResource)
+        val d: Drawable = Drawable.createFromStream(inputStream, null)
+        itemImage.setImageDrawable(d)
 
 
         return view
