@@ -3,6 +3,7 @@ package com.example.android.restaurantapp
 import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Drawable
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -45,9 +46,10 @@ class RestaurantMenuAdapter(private val restaurantItemList: List<RestaurantItem>
 
         // Set up click listener for this item
         holder.overallView.setOnClickListener { view ->
-            val itemId: String = restaurantItem.id
             val intent = Intent(context, CustomizeActivity::class.java)
-            intent.putExtra(ITEM_ID_KEY, itemId)
+            val b = Bundle()
+            b.putSerializable(RESTAURANT_ITEM, restaurantItem)
+            intent.putExtras(b)
             context.startActivity(intent)
         }
     }
@@ -57,6 +59,6 @@ class RestaurantMenuAdapter(private val restaurantItemList: List<RestaurantItem>
     }
 
     companion object {
-        const val ITEM_ID_KEY = "item_id_key"
+        const val RESTAURANT_ITEM = "restaurant_item"
     }
 }
