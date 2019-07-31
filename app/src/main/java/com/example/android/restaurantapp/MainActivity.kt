@@ -3,6 +3,7 @@ package com.example.android.restaurantapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ListView
+import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
 
@@ -12,8 +13,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var restaurantMenuAdapter = RestaurantMenuAdapter(this, restaurantItemList)
-        val listView = findViewById<ListView>(android.R.id.list)
+        var restaurantMenuAdapter = RestaurantMenuAdapter(restaurantItemList, this)
+        val listView : RecyclerView = findViewById(R.id.rvItems)
         listView.adapter = restaurantMenuAdapter
 
     }

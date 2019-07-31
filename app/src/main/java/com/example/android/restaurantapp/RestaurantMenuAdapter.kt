@@ -5,43 +5,50 @@ import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import com.example.android.restaurantapp.models.RestaurantItem
 import java.io.InputStream
 
-class RestaurantMenuAdapter(context: Context, items: MutableList<RestaurantItem>) : ArrayAdapter<RestaurantItem>(context,
-    R.layout.item_listing, items) {
+class RestaurantMenuAdapter(private val restaurantItemList: List<RestaurantItem>, private val context: Context) :
+    RecyclerView.Adapter<RestaurantMenuAdapter.MenuViewHolder>() {
 
-    private val itemListInflater: LayoutInflater = LayoutInflater.from(context)
+    class MenuViewHolder(v: View) : RecyclerView.ViewHolder(v) {
+        val itemImageView: ImageView
+        val nameView: TextView
+        val descriptionView: TextView
+        val priceView: TextView
 
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+        init {
+            itemImageView = v.findViewById(R.id.itemImage)
+            nameView = v.findViewById(R.id.nameLabel)
+            descriptionView = v.findViewById(R.id.itemDescription)
+            priceView = v.findViewById(R.id.priceLabel)
+        }
+    }
 
-        // If view is null, use the inflater to get the appropriate view (item_listing)
-        val view : View = convertView ?: itemListInflater.inflate(R.layout.item_listing, parent, false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuViewHolder {
+        val v = LayoutInflater.from(parent.context).inflate(R.layout.item_listing, parent, false)
+        return MenuViewHolder(v)
+    }
 
-        // Create views for each of the required data fields
-        val nameLabel: TextView = view.findViewById(R.id.nameLabel)
-        val itemImage: ImageView = view.findViewById(R.id.itemImage)
-        val itemDescription: TextView = view.findViewById(R.id.itemDescription)
-        val priceLabel: TextView = view.findViewById(R.id.priceLabel)
-
-        // Retrieve the data
-        val restaurantItem = this.getItem(position)
-
-        // Display the data in the generated views
-        nameLabel.text = restaurantItem.name
-        itemDescription.text = restaurantItem.description
-        priceLabel.text = restaurantItem.price.toString()
+    override fun onBindViewHolder(holder: MenuViewHolder, position: Int) {
+        val restaurantItem = restaurantItemList[position]
 
         // Get the item image
         val imageResource = restaurantItem.image
         val inputStream: InputStream = context.assets.open(imageResource)
         val d: Drawable = Drawable.createFromStream(inputStream, null)
-        itemImage.setImageDrawable(d)
+        holder.itemImageView.setImageDrawable(d)
 
+        // Get the various text
+        holder.nameView.text = restaurantItem.name
+        holder.descriptionView.text = restaurantItem.description
+        holder.priceView.text = restaurantItem.price.toString()
+    }
 
-        return view
+    override fun getItemCount(): Int {
+        return restaurantItemList.count()
     }
 }
