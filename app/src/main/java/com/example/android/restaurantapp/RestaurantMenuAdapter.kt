@@ -1,6 +1,7 @@
 package com.example.android.restaurantapp
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
@@ -15,17 +16,11 @@ class RestaurantMenuAdapter(private val restaurantItemList: List<RestaurantItem>
     RecyclerView.Adapter<RestaurantMenuAdapter.MenuViewHolder>() {
 
     class MenuViewHolder(v: View) : RecyclerView.ViewHolder(v) {
-        val itemImageView: ImageView
-        val nameView: TextView
-        val descriptionView: TextView
-        val priceView: TextView
-
-        init {
-            itemImageView = v.findViewById(R.id.itemImage)
-            nameView = v.findViewById(R.id.nameLabel)
-            descriptionView = v.findViewById(R.id.itemDescription)
-            priceView = v.findViewById(R.id.priceLabel)
-        }
+        val overallView = v
+        val itemImageView: ImageView = v.findViewById(R.id.itemImage)
+        val nameView: TextView = v.findViewById(R.id.nameLabel)
+        val descriptionView: TextView = v.findViewById(R.id.itemDescription)
+        val priceView: TextView = v.findViewById(R.id.priceLabel)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuViewHolder {
@@ -34,6 +29,7 @@ class RestaurantMenuAdapter(private val restaurantItemList: List<RestaurantItem>
     }
 
     override fun onBindViewHolder(holder: MenuViewHolder, position: Int) {
+        // Get the item from the data list
         val restaurantItem = restaurantItemList[position]
 
         // Get the item image
@@ -46,9 +42,21 @@ class RestaurantMenuAdapter(private val restaurantItemList: List<RestaurantItem>
         holder.nameView.text = restaurantItem.name
         holder.descriptionView.text = restaurantItem.description
         holder.priceView.text = restaurantItem.price.toString()
+
+        // Set up click listener for this item
+        holder.overallView.setOnClickListener { view ->
+            val itemId: String = restaurantItem.id
+            val intent = Intent(context, CustomizeActivity::class.java)
+            intent.putExtra(ITEM_ID_KEY, itemId)
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {
         return restaurantItemList.count()
+    }
+
+    companion object {
+        const val ITEM_ID_KEY = "item_id_key"
     }
 }

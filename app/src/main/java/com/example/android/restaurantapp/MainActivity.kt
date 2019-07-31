@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 class MainActivity : AppCompatActivity() {
 
     val restaurantItemList = createSampleData()
+    val restaurantItemMap = createSampleDataMap()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

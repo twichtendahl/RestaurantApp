@@ -5,4 +5,5 @@
     <string name="cheeseburger_price">$7.99</string>
     <string name="classic_burger">Classic burger</string>
     <string name="startingQty">Qty: 0</string>
+    <string name="testing">Testing</string>
 </resources>
