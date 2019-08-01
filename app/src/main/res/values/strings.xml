@@ -6,4 +6,5 @@
     <string name="classic_burger">Classic burger</string>
     <string name="startingQty">Qty: 0</string>
     <string name="testing">Testing</string>
+    <string name="select_qty">Select quantity for this item:</string>
 </resources>

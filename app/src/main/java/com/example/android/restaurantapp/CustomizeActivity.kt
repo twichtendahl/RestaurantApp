@@ -19,7 +19,7 @@ class CustomizeActivity : AppCompatActivity() {
         val itemPrice = restaurantItem.price
 
 
-        val itemDisplay: TextView = findViewById(R.id.itemDisplay)
-        itemDisplay.text = itemDescription
+//        val itemDisplay: TextView = findViewById(R.id.itemDisplay)
+//        itemDisplay.text = itemDescription
     }
 }
